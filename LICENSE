@@ -1,0 +1,38 @@
+Automation Wizard Non-Commercial License 1.0
+Copyright (c) 2025 Jacob See
+
+1. Definitions
+"Software" means the source code, assets, and documentation contained in this repository.
+"You" means any individual or legal entity using the Software.
+
+2. Permission to Use, Study, and Modify
+You are allowed to:
+- Use the Software for personal, educational, research, or internal business purposes.
+- Study the source code to learn from it.
+- Modify the Software and create derivative works for non-commercial purposes.
+
+3. Redistribution (Non-Commercial Only)
+You may redistribute the Software or your modified versions under the following conditions:
+- You must include this License and a copyright notice.
+- You must clearly indicate any changes you have made.
+- You may not charge money for access to the Software or any derivative work, except for reasonable costs of hosting or distribution (e.g. bandwidth or media costs).
+- You may not use the Software or derivatives as part of a paid product, paid service, SaaS offering, or commercial training without explicit written permission from the copyright holder.
+
+4. Prohibited Uses
+Without explicit written permission from the copyright holder, you may not:
+- Use the Software or derivatives in any product or service that generates direct or indirect profit.
+- Sell licenses, subscriptions, or access to the Software or derivatives.
+- Re-license the Software or derivatives under a different license that allows commercial use.
+
+5. Attribution
+If you use or share the Software or derivatives publicly (e.g. in a portfolio, tutorial, article, or open repository), you must credit:
+
+"Automation Wizard Canvas by Jacob See (github.com/jakesdev1991)"
+
+6. No Warranty
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+7. Termination
+If you violate the terms of this License, your rights under this License terminate automatically.
+
+For commercial use or custom licensing, contact: Jake.s.dev1991@gmail.com

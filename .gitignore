@@ -1,0 +1,14 @@
+# Node / Vite / Svelte
+node_modules
+dist
+.svelte-kit
+*.log
+
+# Editor / OS noise
+.vscode
+.idea
+.DS_Store
+
+# Env / local overrides
+.env
+.env.*

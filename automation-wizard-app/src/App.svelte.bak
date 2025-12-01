@@ -1,0 +1,120 @@
+<script lang="ts">
+  import { onDestroy } from 'svelte';
+
+  import Palette from './components/Palette.svelte';
+  import Inspector from './components/Inspector.svelte';
+  import TemplatesPanel from './components/TemplatesPanel.svelte';
+  import NodeCard from './components/NodeCard.svelte';
+  import WireLayer from './components/WireLayer.svelte';
+
+  import { nodes, selected, removeNode } from './lib/workflowStore';
+  import type { NodeItem } from './lib/types';
+
+  let canvasEl: HTMLDivElement | null = null;
+
+  let draggingId: number | null = null;
+  let dragOffset = { x: 0, y: 0 };
+
+  function handleNodePointerDown(event: PointerEvent, node: NodeItem) {
+    event.preventDefault();
+    selected.set(node.id);
+
+    if (!canvasEl) return;
+    const rect = canvasEl.getBoundingClientRect();
+    const startX = event.clientX - rect.left;
+    const startY = event.clientY - rect.top;
+
+    draggingId = node.id;
+    dragOffset = {
+      x: startX - node.x,
+      y: startY - node.y
+    };
+
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
+  }
+
+  function handlePointerMove(event: PointerEvent) {
+    if (draggingId === null || !canvasEl) return;
+    const rect = canvasEl.getBoundingClientRect();
+    const x = event.clientX - rect.left - dragOffset.x;
+    const y = event.clientY - rect.top - dragOffset.y;
+
+    nodes.update((list) =>
+      list.map((n) => (n.id === draggingId ? { ...n, x, y } : n))
+    );
+  }
+
+  function handlePointerUp() {
+    draggingId = null;
+    window.removeEventListener('pointermove', handlePointerMove);
+    window.removeEventListener('pointerup', handlePointerUp);
+  }
+
+  onDestroy(() => {
+    window.removeEventListener('pointermove', handlePointerMove);
+    window.removeEventListener('pointerup', handlePointerUp);
+  });
+
+  function handleRemoveNode(id: number) {
+    removeNode(id);
+  }
+</script>
+
+<main class="min-h-screen bg-slate-950 text-slate-100">
+  <div class="flex flex-col h-screen">
+    <header class="border-b border-slate-800 px-4 py-3 flex items-center justify-between bg-slate-950/80">
+      <div>
+        <h1 class="text-lg font-semibold">Automation Wizard Canvas</h1>
+        <p class="text-xs text-slate-400">
+          Drag nodes, drop AI agents, and sketch automations
+          (Zapier / n8n / GoHighLevel / Ghost / etc.).
+        </p>
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Left: Palette + templates -->
+      <aside class="w-64 border-r border-slate-800 p-3 bg-slate-950/80 overflow-y-auto">
+        <Palette />
+        <div class="mt-3">
+          <TemplatesPanel />
+        </div>
+      </aside>
+
+      <!-- Center: Canvas -->
+      <section class="flex-1 relative bg-slate-950">
+        <div
+          bind:this={canvasEl}
+          class="absolute inset-0 overflow-auto"
+        >
+          <div class="relative w-[2000px] h-[1200px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+            <WireLayer />
+            {#each $nodes as node (node.id)}
+              <NodeCard
+                {node}
+                on:pointerdown={(e) => handleNodePointerDown(e as PointerEvent, node)}
+                on:remove={(e) => handleRemoveNode(e.detail.id)}
+              />
+            {/each}
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Inspector -->
+      <aside class="w-72 border-l border-slate-800 p-3 bg-slate-950/80 overflow-y-auto">
+        <Inspector />
+      </aside>
+    </div>
+  </div>
+</main>
+
+<style>
+  .glass {
+    backdrop-filter: blur(8px) saturate(120%);
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 6px 30px rgba(2, 6, 23, 0.45);
+    border-radius: 14px;
+  }
+</style>
