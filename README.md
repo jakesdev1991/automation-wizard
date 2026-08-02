@@ -1,34 +1,55 @@
-# Automation Wizard (Project Root)
+# Automation Wizard
 
-This repo contains the source for **Automation Wizard Canvas**, a Svelte 5 + Vite app designed to help non-technical users and junior automation builders design, explain, and document workflows for tools like Zapier, n8n, GoHighLevel, and Ghost.
+Svelte-based automation workflow builder with visual drag-and-drop interface. Create, manage, and execute complex automation pipelines.
 
-## Layout
+## Overview
 
-- \`automation-wizard-app/\`  
-  Svelte 5 + Vite front-end application.  
-  Contains the interactive Canvas, Report, and Onboarding views.  
-  See \`automation-wizard-app/README.md\` for full technical details and usage.
+Automation Wizard provides:
 
-- \`docs/\`  
-  Checkpoints, design notes, and planning material used while building the project.
+- **Visual Pipeline Builder**: Drag-and-drop workflow construction
+- **Node Library**: Pre-built automation nodes (HTTP, Transform, Conditional, Loop)
+- **Execution Engine**: Local and remote pipeline execution
+- **State Management**: Persistent workflow state with undo/redo
+- **Template System**: Reusable workflow templates
 
-- \`automation_wizard_dump.md\`  
-  Consolidated dump/spec file used as a source of truth while iterating on the UI.
+## Structure
 
-## Running the app
+```
+automation-wizard/
+├── automation-wizard-app/    # SvelteKit frontend
+├── docs/                     # Documentation
+├── automation_wizard_dump.md # Architecture notes
+└── LICENSE                   # MIT License
+```
+
+## Quick Start
 
 ```bash
 cd automation-wizard-app
 npm install
 npm run dev
-Then open the URL shown in the terminal (usually `http://localhost:5173\`
-).
+```
 
-This repo is primarily a portfolio piece to demonstrate:
+## Development
 
-Practical UI implementation on Svelte 5.
+```bash
+# Type check
+npm run check
 
-Ability to model real-world business automations as visual flows.
+# Lint
+npm run lint
 
-Translating those flows into plain-language specs that a client or junior builder can follow.
-EOF
+# Build
+npm run build
+
+# Test
+npm run test
+```
+
+## Configuration
+
+See `automation-wizard-app/.env.example` for environment variables.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
